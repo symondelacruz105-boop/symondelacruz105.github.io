@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Warehouse Dashboard</title>
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    /* Background Image */
+    background: url("background apec.png") no-repeat center center fixed;
+    background-size: cover;
+
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* Floating background glow */
+body::before{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:#2563eb;
+    filter:blur(180px);
+    opacity:.15;
+    top:-250px;
+    right:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#0ea5e9;
+    filter:blur(180px);
+    opacity:.12;
+    bottom:-250px;
+    left:-150px;
+    z-index:-1;
+}
+
+.container{
+    width:95%;
+    max-width:1450px;
+    display:flex;
+    gap:25px;
+    padding:25px;
+
+    background:rgba(10, 18, 40, 0.55);   /* Transparent */
+    backdrop-filter:blur(8px);
+
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.45);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.left{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.left{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* APEC Banner */
+.apec-banner{
+    width:100%;
+    display:flex;
+    justify-content:flex-start;
+    margin-bottom:20px;
+}
+
+.apec-banner img{
+    width:100%;
+    max-width:520px;
+    border-radius:18px;
+    filter:drop-shadow(0 0 20px rgba(59,130,246,.45));
+
+    transition:.4s;
+}
+
+.apec-banner img:hover{
+    transform:scale(1.03);
+    filter:drop-shadow(0 0 35px rgba(59,130,246,.8));
+}
+
+@keyframes apecFloat{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.left img{
+
+    width:100%;
+    max-width:520px;
+
+    border-radius:15px;
+
+    border:2px solid #2563eb;
+
+    box-shadow:
+    0 0 25px rgba(37,99,235,.35);
+
+    
+
+    transition:.4s;
+}
+
+.left img:hover{
+
+    transform:scale(1.03);
+
+    box-shadow:
+    0 0 40px rgba(59,130,246,.6);
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0);
+    }
+
+}
+
+
+
+.right{
+
+    flex:1.2;
+
+}
+
+h1{
+
+    text-align:center;
+
+    color:#f8fafc;
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+    letter-spacing:1px;
+
+}
+
+#clock{
+
+    text-align:center;
+
+    color:#60a5fa;
+
+    font-size:20px;
+
+    margin-bottom:25px;
+
+    font-weight:bold;
+
+}
+
+.menu{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+.menu a{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+
+}
+
+.menu a::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(255,255,255,.15);
+
+    transform:skewX(-25deg);
+
+    transition:.6s;
+ 
+}
+
+.menu a:hover::before{
+
+    left:130%;
+}
+
+.menu a:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+
+}
+
+/* Button Colors */
+
+.menu a:nth-child(1){background:#2563eb;}
+.menu a:nth-child(2){background:#059669;}
+.menu a:nth-child(3){background:#ea580c;}
+.menu a:nth-child(4){background:#dc2626;}
+.menu a:nth-child(5){background:#0891b2;}
+.menu a:nth-child(6){background:#7c3aed;}
+.menu a:nth-child(7){background:#16a34a;}
+.menu a:nth-child(8){background:#d97706;}
+.menu a:nth-child(9){background:#be123c;}
+.menu a:nth-child(10){background:#4f46e5;}
+.menu a:nth-child(11){background:#0d6020;}
+
+.menu a{
+    opacity:0;
+    animation:slideUp .6s forwards;
+}
+
+.menu a:nth-child(1){animation-delay:.1s;}
+.menu a:nth-child(2){animation-delay:.2s;}
+.menu a:nth-child(3){animation-delay:.3s;}
+.menu a:nth-child(4){animation-delay:.4s;}
+.menu a:nth-child(5){animation-delay:.5s;}
+.menu a:nth-child(6){animation-delay:.6s;}
+.menu a:nth-child(7){animation-delay:.7s;}
+.menu a:nth-child(8){animation-delay:.8s;}
+.menu a:nth-child(9){animation-delay:.9s;}
+.menu a:nth-child(10){animation-delay:1s;}
+.menu a:nth-child(11){animation-delay:1s;}
+
+@keyframes slideUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@media(max-width:900px){
+
+.container{
+
+    flex-direction:column;
+
+}
+
+.menu{
+
+    grid-template-columns:1fr;
+
+}
+
+h1{
+
+    font-size:30px;
+
+}
+
+.left img{
+
+    max-width:100%;
+
+}
+
+
+}
+
+/* Team Banner */
+.team-banner{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:fadeIn 1s ease;
+}
+
+.team-banner img{
+    width:100%;
+    max-width:550px;
+    border-radius:18px;
+    border:2px solid #22c55e;
+    box-shadow:
+        0 0 20px rgba(34,197,94,.35),
+        0 12px 30px rgba(0,0,0,.4);
+
+    transition:.4s ease;
+}
+
+.team-banner img:hover{
+    transform:scale(1.03);
+    box-shadow:
+        0 0 35px rgba(34,197,94,.6),
+        0 15px 35px rgba(0,0,0,.5);
+}
+
+/* Clickable Image */
+
+.schedule-button{
+    width:340px;
+    cursor:pointer;
+    border-radius:12px;
+    transition:.3s;
+    box-shadow:0 0 10px rgba(0,0,0,.3);
+}
+
+.schedule-button:hover{
+    transform:scale(1.03);
+    box-shadow:0 0 20px #00bfff;
+}
+
+/* Modal */
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.85);
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-content{
+    max-width:90%;
+    max-height:90%;
+    border-radius:12px;
+    animation:zoom .3s;
+}
+
+.model{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.85);
+    justify-content:center;
+    align-items:center;
+}
+
+.model-content{
+    max-width:90%;
+    max-height:90%;
+    border-radius:12px;
+    animation:zoom .3s;
+}
+
+.modol{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.85);
+    justify-content:center;
+    align-items:center;
+}
+
+.modol-content{
+    max-width:90%;
+    max-height:90%;
+    border-radius:12px;
+    animation:zoom .3s;
+}
+
+.close{
+    position:absolute;
+    top:20px;
+    right:40px;
+    color:white;
+    font-size:45px;
+    cursor:pointer;
+}
+
+@keyframes zoom{
+    from{transform:scale(.5);}
+    to{transform:scale(1);}
+}
+
+/* Animated Dashboard Buttons */
+.schedule-btn,
+.count-btn,
+.payroll-btn{
+    width:350px;
+    height:65px;
+    border:none;
+    border-radius:14px;
+    color:#fff;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+
+    position:relative;
+    overflow:hidden;
+
+    background:#2563eb;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+    transition:.35s;
+
+    opacity:0;
+    animation:slideUp .6s forwards;
+}
+
+/* Different colors */
+.schedule-btn{
+    background:#cc0ee9;
+    animation-delay:1.1s;
+}
+
+.count-btn{
+    background:#4f3aed;
+    animation-delay:1.2s;
+}
+
+.payroll-btn{
+    background:#dc2626;
+    animation-delay:1.3s;
+}
+
+/* Shine Animation */
+.schedule-btn::before,
+.count-btn::before,
+.payroll-btn::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-120%;
+    width:100%;
+    height:100%;
+    background:rgba(255,255,255,.18);
+    transform:skewX(-25deg);
+    transition:.6s;
+}
+
+.schedule-btn:hover::before,
+.count-btn:hover::before,
+.payroll-btn:hover::before{
+    left:130%;
+}
+
+/* Hover Animation */
+.schedule-btn:hover,
+.count-btn:hover,
+.payroll-btn:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+}
+
+.schedule-btn:active,
+.count-btn:active,
+.payroll-btn:active{
+    transform:scale(.97);
+}
+
+.schedule-btn .icon,
+.count-btn .icon,
+.payroll-btn .icon{
+    font-size:26px;
+}
+
+
+/* Popup */
+
+.modal{
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.85);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.modal-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+.close{
+    position:absolute;
+    top:-15px;
+    right:-15px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:red;
+    color:white;
+    font-size:28px;
+    text-align:center;
+    line-height:40px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+@keyframes zoom{
+    from{
+        transform:scale(.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modol-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.modol-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+.model-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.model-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+.calendar-box{
+    margin-top:25px;
+    background:#1e293b;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.calendar-header h3{
+    color:#fff;
+    font-size:22px;
+}
+
+.calendar-header button{
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.calendar-header button:hover{
+    background:#1d4ed8;
+}
+
+.calendar-days,
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+    text-align:center;
+}
+
+.calendar-days div{
+    font-weight:bold;
+    color:#60a5fa;
+    padding:8px 0;
+}
+
+.calendar-grid div{
+    padding:12px 0;
+    border-radius:8px;
+    background:#0f172a;
+    color:white;
+    cursor:pointer;
+    position:relative;
+    transition:.3s;
+}
+
+.calendar-grid div:hover{
+    background:#1e3a8a;
+}
+
+.calendar-grid .has-note::after{
+    content:"📌";
+    position:absolute;
+    top:3px;
+    right:5px;
+    font-size:12px;
+}
+
+.calendar-grid .today{
+    background:#22c55e;
+    font-weight:bold;
+}
+
+.calendar-grid .empty{
+    background:transparent;
+}
+
+</style>
+
+<style>
+.popup-btn{
+    grid-column:1 / -1;      /* Span across both columns */
+    width:100%;
+    background:#0057b8;
+    color:white;
+    border:none;
+    padding:18px;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-btn:hover{
+    background:#ff6b00;
+    transform:translateY(-6px);
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+}
+</style>
+
+</head>
+
+<body>
+<div class="container">
+<div class="left">
+
+    <!-- APEC Banner -->
+    
+        <img src="apechomes.png" alt="APEC Homes Building Lives">
+    
+<!-- Team Image -->
+<div class="team-banner">
+    <img src="2f0a0df7-da99-4a36-a113-c874cdca4a5a.jpeg" alt="South A-Team Marvin">
+</div>
+
+
+ 
+</div>
+<div class="right">
+<h1>🏭 South-A Warehouse Dashboard</h1>
+<div id="clock"></div>
+
+
+
+<div class="menu">
+
+<button class="popup-btn" onclick="openApecValues()">
+    🏠 APEC Homes Core Values
+</button>
+
+<a href="https://docs.google.com/forms/d/1LwX-YzID-mXy_NyCkNvNY5TWsWp2We8m903sGKRJlnk/viewform?edit_requested=true" target="_blank">📋 DDLS</a>
+<a href="https://script.google.com/macros/s/AKfycbwpnxgE8ZrUxQx73Cap0a_SvVmaZMcI3RxJ8i6vQOHnVldFfjhiPSXgdkqs5X4d7TEN/exec" target="_blank">🏭 Warehouse Checklist</a>
+<a href="https://docs.google.com/spreadsheets/d/1HDwHliL0LywKESsM-q3yBcvn84ytymVGKg38xjHOeow/edit?gid=1119346288#gid=1119346288" target="_blank">📊 Gatepass Responses</a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdoUjSkBIfVRdxJ8j7-Ys1PwwYcFU8hcilMDIPNufsBIQ34aQ/viewform" target="_blank">🚚 Gatepass Form</a>
+<a href="https://docs.google.com/spreadsheets/d/19QK5GXg-606yhK1ELuWX5bb_KwmlKJ4PWUHm9bVv_F8/edit?usp=drive_link" target="_blank">⛽ Diesel Monitoring</a>
+<a href="https://docs.google.com/forms/d/1Ketn4v8Iev-J8pwTsXJpQBw6fG-YM5M3dQ_YGFERjkw/viewform?edit_requested=true" target="_blank">📦 Actual Countsheet</a>
+<a href="https://assist.kaapeconline.com/login" target="_blank">💬 Ka Apec Assist</a>
+<a href="https://docs.google.com/spreadsheets/d/1jmPosr5sO7s7qm68XSEl87YhTiu_PugtUvdcwIhhzv8/edit?gid=1234911118#gid=1234911118" target="_blank">⚠️ Zero & Crit Report</a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdvqwUvmg58wFptKErcRxeSSEb0AqYGod3hLwAURsZc14plHA/viewform" target="_blank">🚛 Transportation Breakdown</a>
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdiBH4lWckwi7lceavrbgunjewzIj-qF9wCX2jxhNNbaKNSSA/viewform" target="_blank">🚚 Truck Registration</a>
+<a href="All About Payroll.html" target="_blank"> All About Payroll</a>
+
+<!-- Warehouse Operation Schedule Button -->
+<button class="schedule-btn" onclick="openSchedule()">
+    <span class="icon">📅</span>
+    <span>Warehouse Operation Schedule</span>
+</button>
+
+<!-- Count 1 and 2 Modal -->
+<button class="count-btn" onclick="openCount()">
+    <span class="icon">📅</span>
+    <span>Count 1 and 2 reminders</span>
+</button>
+
+<!-- Payroll -->
+<button class="payroll-btn" onclick="openPayroll()">
+    <span class="icon">📅</span>
+    <span>Payroll reminders</span>
+</button>
+
+</div>
+
+
+<!-- Calendar -->
+<div class="calendar-box">
+    <div class="calendar-header">
+        <button onclick="changeMonth(-1)">❮</button>
+        <h3 id="monthYear"></h3>
+        <button onclick="changeMonth(1)">❯</button>
+    </div>
+
+    <div class="calendar-days">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+    </div>
+
+    <div id="calendar" class="calendar-grid"></div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+</div>
+
+
+
+<script>
+function t(){clock.innerHTML=new Date().toLocaleString();}
+setInterval(t,1000);t();
+</script>
+
+
+<script>
+
+function openSchedule(){
+    document.getElementById("scheduleModal").style.display="flex";
+}
+
+function closeSchedule(){
+    document.getElementById("scheduleModal").style.display="none";
+}
+
+
+</script>
+
+<script>
+
+function openPayroll(){
+    document.getElementById("payrollModel").style.display="flex";
+}
+
+function closePayroll(){
+    document.getElementById("payrollModel").style.display="none";
+}
+
+
+</script>
+
+<script>
+
+function openCount(){
+    document.getElementById("countModol").style.display="flex";
+}
+
+function closeCount(){
+    document.getElementById("countModol").style.display="none";
+}
+
+window.onclick = function(event){
+
+    const schedule = document.getElementById("scheduleModal");
+    const count = document.getElementById("countModol");
+     const payroll = document.getElementById("payrollModel");
+
+    if(event.target === schedule){
+        schedule.style.display = "none";
+    }
+
+    if(event.target === count){
+        count.style.display = "none";
+    }
+
+   if(event.target === payroll){
+        payroll.style.display = "none";
+    }
+
+}
+
+</script>
+
+<!-- Warehouse Schedule Modal -->
+
+<div id="scheduleModal" class="modal">
+    <div class="modal-box">
+        <span class="close" onclick="closeSchedule()">&times;</span>
+        <img src="warehouse_schedule_600x800.jpg" alt="Warehouse Schedule">
+    </div>
+</div>
+
+<!-- Count 1 and 2 Modal -->
+
+<div id="countModol" class="modol">
+    <div class="modol-box">
+        <span class="close" onclick="closeCount()">&times;</span>
+        <img src="count 1 and 2.jpg" alt="Count 1 and 2">
+    </div>
+</div>
+
+<!-- payroll -->
+
+<div id="payrollModel" class="model">
+    <div class="model-box">
+        <span class="close" onclick="closePayroll()">&times;</span>
+        <img src="payroll reminder.jpg" alt="payroll">
+    </div>
+</div>
+
+</div>
+
+<script>
+const calendar = document.getElementById("calendar");
+const monthYear = document.getElementById("monthYear");
+
+let currentDate = new Date();
+
+
+
+function renderCalendar(){
+
+    calendar.innerHTML="";
+
+    const year=currentDate.getFullYear();
+    const month=currentDate.getMonth();
+
+    const firstDay=new Date(year,month,1).getDay();
+    const lastDate=new Date(year,month+1,0).getDate();
+
+    monthYear.innerHTML=currentDate.toLocaleString("default",{
+        month:"long",
+        year:"numeric"
+    });
+
+    for(let i=0;i<firstDay;i++){
+        calendar.innerHTML+='<div class="empty"></div>';
+    }
+
+    const today=new Date();
+
+    for(let d=1;d<=lastDate;d++){
+
+       const day = document.createElement("div");
+day.textContent = d;
+
+const dateKey =
+    year + "-" +
+    String(month + 1).padStart(2,"0") + "-" +
+    String(d).padStart(2,"0");
+
+// Show 📌 if note exists
+if(notes[dateKey]){
+    day.classList.add("has-note");
+    day.title = notes[dateKey];
+}
+
+// Click to edit note
+day.onclick = function(){
+    addNote(dateKey);
+};
+
+        if(
+            d===today.getDate() &&
+            month===today.getMonth() &&
+            year===today.getFullYear()
+        ){
+            day.classList.add("today");
+        }
+
+        calendar.appendChild(day);
+    }
+}
+
+function changeMonth(step){
+    currentDate.setMonth(currentDate.getMonth()+step);
+    renderCalendar();
+}
+
+// Save notes
+let notes = JSON.parse(localStorage.getItem("calendarNotes")) || {};
+
+function addNote(dateKey){
+
+    const current = notes[dateKey] || "";
+
+    const note = prompt("Enter your note:", current);
+
+    if(note === null) return;
+
+    if(note.trim() === ""){
+        delete notes[dateKey];
+    }else{
+        notes[dateKey] = note;
+    }
+
+    localStorage.setItem("calendarNotes", JSON.stringify(notes));
+    renderCalendar();
+}
+
+renderCalendar();
+</script>
+
+<script>
+function openApecValues(){
+
+    const width = 1100;
+    const height = 750;
+
+    const left = (screen.width - width) / 2;
+    const top = (screen.height - height) / 2;
+
+    window.open(
+        "apecvalues.html",
+        "APECValues",
+        `width=${width},
+        height=${height},
+        top=${top},
+        left=${left},
+        resizable=yes,
+        scrollbars=yes,
+        toolbar=no,
+        menubar=no,
+        location=no,
+        status=no`
+    );
+
+}
+</script>
+
+</body></html>
