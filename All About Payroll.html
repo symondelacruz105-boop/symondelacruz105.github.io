@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payroll & HR Portal</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+}
+
+.container{
+    width:100%;
+    max-width:1100px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(15px);
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+header{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+header h1{
+    color:#fff;
+    font-size:38px;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#dbeafe;
+    font-size:17px;
+}
+
+.menu{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:18px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:white;
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:15px;
+    padding:20px;
+    transition:.3s;
+    display:flex;
+    align-items:center;
+    gap:15px;
+    font-weight:600;
+    line-height:1.5;
+}
+
+.menu a:hover{
+    transform:translateY(-6px);
+    background:#2563eb;
+    box-shadow:0 10px 30px rgba(37,99,235,.5);
+}
+
+.icon{
+    font-size:30px;
+}
+
+footer{
+    margin-top:35px;
+    text-align:center;
+    color:#cbd5e1;
+    font-size:14px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<header>
+<h1>Payroll & HR Portal</h1>
+<p>Employee Self-Service Dashboard</p>
+</header>
+
+<div class="menu" id="menu">
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSd8F8zhqH3XiLUKztwuy3tDRzbV-xWWfq52keA1WK8inQkQKw/viewform" target="_blank">
+<span class="icon">📝</span>
+<span>Payroll Amendment<br><small>Correction / Late Application</small></span>
+</a>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdgc-WqpiUs7wBlazQcJRJyTnoBz8_LnctIWFC68yLjnpBlhw/viewform" target="_blank">
+<span class="icon">🆔</span>
+<span>ID Number Generator<br><small>For Amendment Requirement</small></span>
+</a>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdgqRnxrZmOFLimSPWddIGDmRqtO0ukUcBuJasCTM1g_CH5DA/viewform" target="_blank">
+<span class="icon">📂</span>
+<span>Timekeeping Dropbox<br><small>Upload Amendment, DAS & Holiday Memo</small></span>
+</a>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLScJU6pzzBGdIqCYi2ei9lt7jH67cGG4BN0zOl5nklSt_7iNpg/viewform" target="_blank">
+<span class="icon">📋</span>
+<span>Payroll Request & Concerns<br><small>COE, 2316, Loan Certification & More</small></span>
+</a>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSdnAHgJtzS8P5FqiUTDgLO68e5vDIrxVnWnTxK6YWgFfmK4uA/viewform?vc=0&c=0&w=1&flr=0" target="_blank">
+<span class="icon">🎁</span>
+<span>Benefits Application<br><small>Bereavement Assistance & Wedding Gift</small></span>
+</a>
+
+<a href="https://drive.google.com/drive/u/1/folders/1-3jvCtLWUjKIDyycH1UGBqfz7AcyiqXC" target="_blank">
+<span class="icon">📚</span>
+<span>All About Payroll<br><small>Payroll Forms & Documents</small></span>
+</a>
+
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSeEAK8WXzlKu8xVAT7GxvK7nfr7iKSq1MhnNXx6L0Ec8eQsVQ/viewform" target="_blank">
+<span class="icon">🏥</span>
+<span>HMO Utilization<br><small>PhilCare / HMO Usage Form</small></span>
+</a>
+
+</div>
+
+<footer>
+© 2026 Payroll & HR Portal | Employee Self-Service Dashboard
+</footer>
+
+</div>
+
+<script>
+const search=document.getElementById("search");
+
+search.addEventListener("keyup",function(){
+
+let filter=search.value.toLowerCase();
+
+let items=document.querySelectorAll(".menu a");
+
+items.forEach(item=>{
+
+let text=item.innerText.toLowerCase();
+
+item.style.display=text.includes(filter) ? "flex":"none";
+
+});
+
+});
+</script>
+
+</body>
+</html>
