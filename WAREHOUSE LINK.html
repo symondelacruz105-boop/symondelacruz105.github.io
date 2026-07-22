@@ -22,11 +22,13 @@ body{
     background: url("background apec.png") no-repeat center center fixed;
     background-size: cover;
 
+
     color:#fff;
     overflow-x:hidden;
 }
 
 /* Floating background glow */
+
 body::before{
     content:"";
     position:fixed;
@@ -60,13 +62,15 @@ body::after{
     gap:25px;
     padding:25px;
 
-    background:rgba(10, 18, 40, 0.55);   /* Transparent */
-    backdrop-filter:blur(8px);
+   background:rgba(7,18,38,.72);
+    backdrop-filter:blur(14px);
 
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:20px;
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:24px;
 
-    box-shadow:0 20px 40px rgba(0,0,0,.45);
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.08);
 }
 
 @keyframes fadeIn{
@@ -764,7 +768,7 @@ h1{
     
 <!-- Team Image -->
 <div class="team-banner">
-    <img src="2f0a0df7-da99-4a36-a113-c874cdca4a5a.jpeg" alt="South A-Team Marvin">
+    <img src="south a warehouse.png" alt="South A-Team Marvin">
 </div>
 
 
