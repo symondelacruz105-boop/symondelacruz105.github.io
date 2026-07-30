@@ -57,7 +57,7 @@ body::after{
 
 .container{
     width:95%;
-    max-width:1450px;
+    max-width:800px;
     display:flex;
     gap:25px;
     padding:25px;
@@ -72,107 +72,6 @@ body::after{
         0 25px 60px rgba(0,0,0,.55),
         inset 0 1px 0 rgba(255,255,255,.08);
 }
-
-@keyframes fadeIn{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-.left{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.left{
-    flex:1;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
-
-/* APEC Banner */
-.apec-banner{
-    width:100%;
-    display:flex;
-    justify-content:flex-start;
-    margin-bottom:20px;
-}
-
-.apec-banner img{
-    width:100%;
-    max-width:520px;
-    border-radius:18px;
-    filter:drop-shadow(0 0 20px rgba(59,130,246,.45));
-
-    transition:.4s;
-}
-
-.apec-banner img:hover{
-    transform:scale(1.03);
-    filter:drop-shadow(0 0 35px rgba(59,130,246,.8));
-}
-
-@keyframes apecFloat{
-    0%{
-        transform:translateY(0px);
-    }
-    50%{
-        transform:translateY(-8px);
-    }
-    100%{
-        transform:translateY(0px);
-    }
-}
-
-.left img{
-
-    width:100%;
-    max-width:520px;
-
-    border-radius:15px;
-
-    border:2px solid #2563eb;
-
-    box-shadow:
-    0 0 25px rgba(37,99,235,.35);
-
-    
-
-    transition:.4s;
-}
-
-.left img:hover{
-
-    transform:scale(1.03);
-
-    box-shadow:
-    0 0 40px rgba(59,130,246,.6);
-}
-
-@keyframes float{
-
-    0%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-
-    100%{
-        transform:translateY(0);
-    }
-
-}
-
 
 
 .right{
@@ -281,57 +180,6 @@ h1{
 
 }
 
-/* Button Colors */
-
-.menu a:nth-child(1){background:#2563eb;}
-.menu a:nth-child(2){background:#059669;}
-.menu a:nth-child(3){background:#ea580c;}
-.menu a:nth-child(4){background:#dc2626;}
-.menu a:nth-child(5){background:#0891b2;}
-.menu a:nth-child(6){background:#7c3aed;}
-.menu a:nth-child(7){background:#16a34a;}
-.menu a:nth-child(8){background:#d97706;}
-.menu a:nth-child(9){background:#be123c;}
-.menu a:nth-child(10){background:#4f46e5;}
-.menu a:nth-child(11){background:#0d6020;}
-
-.menu a{
-    opacity:0;
-    animation:slideUp .6s forwards;
-}
-
-.menu a:nth-child(1){animation-delay:.1s;}
-.menu a:nth-child(2){animation-delay:.2s;}
-.menu a:nth-child(3){animation-delay:.3s;}
-.menu a:nth-child(4){animation-delay:.4s;}
-.menu a:nth-child(5){animation-delay:.5s;}
-.menu a:nth-child(6){animation-delay:.6s;}
-.menu a:nth-child(7){animation-delay:.7s;}
-.menu a:nth-child(8){animation-delay:.8s;}
-.menu a:nth-child(9){animation-delay:.9s;}
-.menu a:nth-child(10){animation-delay:1s;}
-.menu a:nth-child(11){animation-delay:1s;}
-
-@keyframes slideUp{
-
-    from{
-
-        opacity:0;
-
-        transform:translateY(30px);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:translateY(0);
-
-    }
-
-}
-
 @media(max-width:900px){
 
 .container{
@@ -361,47 +209,18 @@ h1{
 
 }
 
-/* Team Banner */
-.team-banner{
-    margin-top:30px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    animation:fadeIn 1s ease;
-}
-
-.team-banner img{
-    width:100%;
-    max-width:550px;
-    border-radius:18px;
-    border:2px solid #22c55e;
-    box-shadow:
-        0 0 20px rgba(34,197,94,.35),
-        0 12px 30px rgba(0,0,0,.4);
-
-    transition:.4s ease;
-}
-
-.team-banner img:hover{
-    transform:scale(1.03);
-    box-shadow:
-        0 0 35px rgba(34,197,94,.6),
-        0 15px 35px rgba(0,0,0,.5);
-}
-
 /* Clickable Image */
 
 .schedule-button{
     width:340px;
     cursor:pointer;
     border-radius:12px;
-    transition:.3s;
     box-shadow:0 0 10px rgba(0,0,0,.3);
 }
 
 .schedule-button:hover{
     transform:scale(1.03);
-    box-shadow:0 0 20px #00bfff;
+    box-shadow:0 0 20px #2563eb;
 }
 
 /* Modal */
@@ -505,25 +324,21 @@ h1{
 
     box-shadow:0 8px 20px rgba(0,0,0,.35);
 
-    transition:.35s;
-
-    opacity:0;
-    animation:slideUp .6s forwards;
 }
 
 /* Different colors */
 .schedule-btn{
-    background:#cc0ee9;
+    background:#2563eb;
     animation-delay:1.1s;
 }
 
 .count-btn{
-    background:#4f3aed;
+    background:#2563eb;
     animation-delay:1.2s;
 }
 
 .payroll-btn{
-    background:#dc2626;
+    background:#2563eb;
     animation-delay:1.3s;
 }
 
@@ -784,20 +599,7 @@ h1{
 
 <body>
 <div class="container">
-<div class="left">
 
-    <!-- APEC Banner -->
-    
-        <img src="apechomes.png" alt="APEC Homes Building Lives">
-    
-<!-- Team Image -->
-<div class="team-banner">
-    <img src="south a warehouse.png" alt="South A-Team Marvin">
-</div>
-
-
- 
-</div>
 <div class="right">
 <h1>🏭 South-A Warehouse Dashboard</h1>
 <div id="clock"></div>
