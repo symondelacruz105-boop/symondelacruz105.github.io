@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Webpage</title>
+<style>
+.btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-glow {
+  background-color: #6366f1;
+  color: white;
+  /* Smoothly animates changes over 0.3 seconds */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-glow:hover {
+  /* Lifts the button slightly */
+  transform: translateY(-2px);
+  /* Creates a vibrant color glow */
+  box-shadow:0 15px 25px rgba(37,99,235,.35);
+}
+
+.btn-slide {
+  background-color: #059669;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-slide span {
+  position: relative;
+  z-index: 2;
+}
+
+.btn-slide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #047857;
+  /* Starts completely hidden on the left */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
+
+.btn-slide:hover::before {
+  /* Slides across to fill the button */
+  transform: scaleX(1);
+}
+
+.btn-border {
+  background: transparent;
+  color: #1e293b;
+  box-shadow: inset 0 0 0 2px #1e293b;
+  transition: color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-border:hover {
+  /* Shifts the border into a solid background fill */
+  box-shadow: inset 0 0 0 2em #1e293b;
+  color: white;
+}
+
+.btn-underline {
+  background: transparent;
+  color: #2563eb;
+  position: relative;
+}
+
+.btn-underline::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.btn-underline:hover::after {
+  /* Expands the line outward from the center */
+  width: 100%;
+  left: 0;
+}
+
+
+</style>
+</head>
+
+<body>
+
+    <h1>Welcome to My Website</h1>
+    <p>This is a simple paragraph of text on a basic HTML page.</p>
+    
+    <a href="https://example.com">Visit Example Website</a>
+<button class="btn btn-glow">Glow Effect</button>
+<button class="btn btn-slide"><span>Slide Effect</span></button>
+<button class="btn btn-border">Draw Border</button>
+<button class="btn btn-underline">Underline</button>
+
+</body>
+</html>

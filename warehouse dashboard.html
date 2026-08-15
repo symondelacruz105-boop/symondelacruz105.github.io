@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Warehouse Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="container">
+
+<div class="right">
+<h1>🏭 South-A Warehouse Dashboard</h1>
+<div id="clock"></div>
+
+
+
+<div class="menu">
+
+<button class="popup-btn" onclick="openApecValues()">
+    🏠 APEC Homes Core Values
+</button>
+
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/forms/d/1LwX-YzID-mXy_NyCkNvNY5TWsWp2We8m903sGKRJlnk/viewform?edit_requested=true', 'DDLS')">📋 DDLS</button>
+<button class="popup-link" onclick="openLinkPopup('https://script.google.com/macros/s/AKfycbwpnxgE8ZrUxQx73Cap0a_SvVmaZMcI3RxJ8i6vQOHnVldFfjhiPSXgdkqs5X4d7TEN/exec', 'WarehouseChecklist')">🏭 Warehouse Checklist</button>
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/spreadsheets/d/1HDwHliL0LywKESsM-q3yBcvn84ytymVGKg38xjHOeow/edit?gid=1119346288#gid=1119346288', 'GatepassResponses')">📊 Gatepass Responses</button>
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/forms/d/e/1FAIpQLSdoUjSkBIfVRdxJ8j7-Ys1PwwYcFU8hcilMDIPNufsBIQ34aQ/viewform', 'GatepassForm')">🚚 Gatepass Form</button>
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/spreadsheets/d/19QK5GXg-606yhK1ELuWX5bb_KwmlKJ4PWUHm9bVv_F8/edit?usp=drive_link', 'DieselMonitoring')">⛽ Diesel Monitoring</button>
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/forms/d/1Ketn4v8Iev-J8pwTsXJpQBw6fG-YM5M3dQ_YGFERjkw/viewform?edit_requested=true', 'ActualCountsheet')">📦 Actual Countsheet</button>
+<button class="popup-link" onclick="openLinkPopup('https://assist.kaapeconline.com/login', 'KaApecAssist')">💬 Ka Apec Assist</button>
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/spreadsheets/d/1jmPosr5sO7s7qm68XSEl87YhTiu_PugtUvdcwIhhzv8/edit?gid=1234911118#gid=1234911118', 'ZeroCritReport')">⚠️ Zero & Crit Report</button>
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/forms/d/e/1FAIpQLSdvqwUvmg58wFptKErcRxeSSEb0AqYGod3hLwAURsZc14plHA/viewform', 'TransportationBreakdown')">🚛 Transportation Breakdown</button>
+<button class="popup-link" onclick="openLinkPopup('https://docs.google.com/forms/d/e/1FAIpQLSdiBH4lWckwi7lceavrbgunjewzIj-qF9wCX2jxhNNbaKNSSA/viewform', 'TruckRegistration')">🚚 Truck Registration</button>
+<button class="popup-link" onclick="openLinkPopup('All About Payroll.html', 'AllAboutPayroll')">💰 All About Payroll</button>
+
+<!-- Warehouse Operation Schedule Button -->
+<button class="schedule-btn" onclick="openModal('scheduleModal')">
+    <span class="icon">🔔</span>
+    <span>Warehouse Operation Schedule</span>
+</button>
+
+<!-- Count 1 and 2 Modal -->
+<button class="count-btn" onclick="openModal('countModol')">
+    <span class="icon">🔔</span>
+    <span>Count 1 and 2 reminders</span>
+</button>
+
+<!-- Payroll -->
+<button class="payroll-btn" onclick="openModal('payrollModel')">
+    <span class="icon">🔔</span>
+    <span>Payroll reminders</span>
+</button>
+
+<!-- Truck plate Registration -->
+<button class="payroll-btn" onclick="openModal('truckModel')">
+    <span class="icon">🔔</span>
+    <span>Truck plate Registration</span>
+</button>
+
+<!-- PO transfer Endorsement -->
+<button class="payroll-btn" onclick="openModal('POModel')">
+    <span class="icon">🔔</span>
+    <span>PO transfer Endorsement</span>
+</button>
+
+<!-- Borrowed Module -->
+<button class="payroll-btn" onclick="openModal('borrowedModel')">
+    <span class="icon">🔔</span>
+    <span>Borrowed Module</span>
+</button>
+
+<!-- Return to Supplier -->
+<button class="payroll-btn" onclick="openModal('returnModel')">
+    <span class="icon">🔔</span>
+    <span>Return to Supplier</span>
+</button>
+
+</div>
+
+
+<!-- Calendar -->
+<div class="calendar-box">
+    <div class="calendar-header">
+        <button onclick="changeMonth(-1)">❮</button>
+        <h3 id="monthYear"></h3>
+        <button onclick="changeMonth(1)">❯</button>
+    </div>
+
+    <div class="calendar-days">
+        <div>Sun</div>
+        <div>Mon</div>
+        <div>Tue</div>
+        <div>Wed</div>
+        <div>Thu</div>
+        <div>Fri</div>
+        <div>Sat</div>
+    </div>
+
+    <div id="calendar" class="calendar-grid"></div>
+</div>
+
+</div>
+</div>
+</div>
+<!-- Warehouse Schedule Modal -->
+
+<div id="scheduleModal" class="modal">
+    <div class="modal-box">
+        <span class="close" onclick="closeModal('scheduleModal')">&times;</span>
+        <img src="warehouse_schedule_600x800.jpg" alt="Warehouse Schedule">
+    </div>
+</div>
+
+<!-- Count 1 and 2 Modal -->
+
+<div id="countModol" class="modal">
+    <div class="modol-box">
+        <span class="close" onclick="closeModal('countModol')">&times;</span>
+        <img src="count 1 and 2.jpg" alt="Count 1 and 2">
+    </div>
+</div>
+
+<!-- payroll -->
+
+<div id="payrollModel" class="modal">
+    <div class="model-box">
+        <span class="close" onclick="closeModal('payrollModel')">&times;</span>
+        <img src="payroll reminder.jpg" alt="payroll">
+    </div>
+</div>
+
+<!-- Truck plate Registration -->
+
+<div id="truckModel" class="modal">
+    <div class="model-box">
+        <span class="close" onclick="closeModal('truckModel')">&times;</span>
+        <img src="truck registration.jpg" alt="payroll">
+    </div>
+</div>
+
+<!-- PO transfer Endorsement -->
+
+<div id="POModel" class="modal">
+    <div class="model-box">
+        <span class="close" onclick="closeModal('POModel')">&times;</span>
+        <img src="PO transfer endorsement.jpg" alt="payroll">
+    </div>
+</div>
+
+<!-- Borrowed Module -->
+
+<div id="borrowedModel" class="modal">
+    <div class="model-box">
+        <span class="close" onclick="closeModal('borrowedModel')">&times;</span>
+        <img src="borrowed module.jpg" alt="payroll">
+    </div>
+</div>
+
+<!-- Return to Supplier -->
+
+<div id="returnModel" class="modal">
+    <div class="model-box">
+        <span class="close" onclick="closeModal('returnModel')">&times;</span>
+        <img src="retrun to supplier.jpg" alt="payroll">
+    </div>
+</div>
+
+</div>
+
+
+    <script src="script.js"></script>
+</body></html>

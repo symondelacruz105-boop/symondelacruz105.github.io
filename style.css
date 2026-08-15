@@ -1,0 +1,534 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Arial,sans-serif;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    /* Background Image */
+    background: url("background apec.png") no-repeat center center fixed;
+    background-size: cover;
+
+
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/* Floating background glow */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:600px;
+    height:600px;
+    background:#2563eb;
+    filter:blur(180px);
+    opacity:.15;
+    top:-250px;
+    right:-150px;
+    z-index:-1;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#0ea5e9;
+    filter:blur(180px);
+    opacity:.12;
+    bottom:-250px;
+    left:-150px;
+    z-index:-1;
+}
+
+.container{
+    width:95%;
+    max-width:800px;
+    display:flex;
+    gap:25px;
+    padding:25px;
+
+   background:rgba(7,18,38,.72);
+    backdrop-filter:blur(14px);
+
+    border:1px solid rgba(255,255,255,.18);
+    border-radius:24px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.55),
+        inset 0 1px 0 rgba(255,255,255,.08);
+}
+
+
+.right{
+
+    flex:1.2;
+
+}
+
+h1{
+
+    text-align:center;
+
+    color:#f8fafc;
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+    letter-spacing:1px;
+
+}
+
+#clock{
+
+    text-align:center;
+
+    color:#60a5fa;
+
+    font-size:20px;
+
+    margin-bottom:25px;
+
+    font-weight:bold;
+
+}
+
+.menu{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:16px;
+
+}
+
+.menu a{
+
+    text-decoration:none;
+
+    color:white;
+
+    padding:18px;
+
+    border-radius:14px;
+
+    text-align:center;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    transition:.35s;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+
+}
+
+.menu a::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(255,255,255,.15);
+
+    transform:skewX(-25deg);
+
+    transition:.6s;
+ 
+}
+
+.menu a:hover::before{
+
+    left:130%;
+}
+
+.menu a:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+
+}
+
+@media(max-width:900px){
+
+.container{
+
+    flex-direction:column;
+
+}
+
+.menu{
+
+    grid-template-columns:1fr;
+
+}
+
+h1{
+
+    font-size:30px;
+
+}
+
+.left img{
+
+    max-width:100%;
+
+}
+
+
+}
+
+/* Clickable Image */
+
+
+/* Modal */
+
+.model{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.85);
+    justify-content:center;
+    align-items:center;
+}
+
+.model-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.model-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+.modol{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.85);
+    justify-content:center;
+    align-items:center;
+}
+
+.modol-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.modol-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+
+/* Animated Dashboard Buttons */
+.schedule-btn,
+.count-btn,
+.payroll-btn{
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+
+.schedule-btn,
+.count-btn,
+.payroll-btn {
+   background:#2563eb;
+  color: white;
+  /* Smoothly animates changes over 0.3 seconds */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.schedule-btn:hover,
+.count-btn:hover,
+.payroll-btn:hover{
+  transform:translateY(-6px);
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+    filter:brightness(1.12);
+}
+
+
+.schedule-btn:active,
+.count-btn:active,
+.payroll-btn:active{
+    transform:scale(.97);
+}
+
+.schedule-btn .icon,
+.count-btn .icon,
+.payroll-btn .icon{
+    font-size:26px;
+}
+
+
+/* Popup */
+
+.modal{
+    display:none;
+    position:fixed;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.85);
+    z-index:9999;
+    justify-content:center;
+    align-items:center;
+}
+
+.modal-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.modal-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+.close{
+    position:absolute;
+    top:-15px;
+    right:-15px;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:red;
+    color:white;
+    font-size:28px;
+    text-align:center;
+    line-height:40px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+@keyframes zoom{
+    from{
+        transform:scale(.7);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modal-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.modal-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+.modal-box{
+    position:relative;
+    animation:zoom .25s ease;
+}
+
+.modal-box img{
+    max-width:90vw;
+    max-height:90vh;
+    border-radius:12px;
+    box-shadow:0 0 25px #00c6ff;
+}
+
+.calendar-box{
+    margin-top:25px;
+    background:#1e293b;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.calendar-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.calendar-header h3{
+    color:#fff;
+    font-size:22px;
+}
+
+.calendar-header button{
+    background:#2563eb;
+    color:#fff;
+    border:none;
+    padding:8px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:18px;
+    transition:.3s;
+}
+
+.calendar-header button:hover{
+    background:#1d4ed8;
+}
+
+.calendar-days,
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:6px;
+    text-align:center;
+}
+
+.calendar-days div{
+    font-weight:bold;
+    color:#60a5fa;
+    padding:8px 0;
+}
+
+.calendar-grid div{
+    padding:12px 0;
+    border-radius:8px;
+    background:#0f172a;
+    color:white;
+    cursor:pointer;
+    position:relative;
+    transition:.3s;
+}
+
+.calendar-grid div:hover{
+    background:#1e3a8a;
+}
+
+.calendar-grid .has-note::after{
+    content:"📌";
+    position:absolute;
+    top:3px;
+    right:5px;
+    font-size:12px;
+}
+
+.calendar-grid .today{
+    background:#22c55e;
+    font-weight:bold;
+}
+
+.calendar-grid .empty{
+    background:transparent;
+}
+
+
+.calendar-grid .holiday{
+    background:#b91c1c;
+    color:#fff;
+    font-weight:bold;
+    box-shadow:0 0 10px rgba(239,68,68,.35);
+}
+.calendar-grid .holiday:hover{background:#dc2626;}
+.calendar-grid .holiday.regular{background:#991b1b;}
+.calendar-grid .holiday.special{background:#c2410c;}
+.calendar-grid .holiday .holiday-name{
+    display:block;font-size:9px;line-height:10px;margin-top:3px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.holiday-legend{
+    display:flex;justify-content:center;gap:14px;flex-wrap:wrap;
+    margin-top:12px;font-size:12px;color:#cbd5e1;
+}
+.holiday-legend span{display:flex;align-items:center;gap:5px;}
+.holiday-dot{width:10px;height:10px;border-radius:3px;display:inline-block;}
+.holiday-dot.regular{background:#991b1b;}
+.holiday-dot.special{background:#c2410c;}
+
+.popup-btn{
+    grid-column:1 / -1;      /* Span across both columns */
+    width:100%;
+    background:#0057b8;
+    color:white;
+    border:none;
+    padding:18px;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.popup-btn:hover{
+    background:#ff6b00;
+    transform:translateY(-6px);
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+}
+
+.popup-link{
+    width:100%;
+    border:none;
+    color:white;
+    padding:18px;
+    border-radius:14px;
+    text-align:center;
+    font-size:17px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:.35s;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    background:#2563eb;
+}
+
+.popup-link:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 25px rgba(37,99,235,.35);
+    filter:brightness(1.12);
+}
